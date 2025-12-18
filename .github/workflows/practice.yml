@@ -1,22 +1,22 @@
-name: practice_CI
+name: Practice_Ci/Cd
 
 on:
     push:
         branches: [main]
 
 jobs:
-    Hello:
+    hello:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repo
+            - name: checkout
               uses: actions/checkout@v4
-
-            - name: Say hello
-              run: echo "hello from github actions"
+            
+            - name: Thanks
+              run: echo "say thank you"
 
             - name: show files
               run: ls -a
 
-            - name: print working directry
+            - name: show current directory
               run: pwd
