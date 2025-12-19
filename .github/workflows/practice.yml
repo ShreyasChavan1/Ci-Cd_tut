@@ -16,14 +16,16 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
+
       - run: npm ci
 
       - name: test our redis
         run: node index.js
         env:
-          host: localhost
-          port: 6379
+          HOST: localhost
+          PORT: 6379
 
 
 
