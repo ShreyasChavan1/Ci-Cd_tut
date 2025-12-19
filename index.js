@@ -1,4 +1,4 @@
-import Redis from "ioredis";
+const Redis = require('ioredis')
 
 const redisclient = new Redis({
     host: process.env.host,
