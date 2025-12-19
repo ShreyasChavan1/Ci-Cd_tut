@@ -1,22 +1,65 @@
-name : practice ci/cd
+name: ci/cd2
 
 on:
   push:
     branches: [main]
 
 jobs:
-    hello:
-      runs-on: ubuntu-latest
+  ci2:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: checkout the repo
-          uses: actions/checkout@v4
-        
-        - name: say hello
-          run: echo "hello from actions"
-        
-        - name: get file structure
-          run: ls -a
+    steps:
+      - name: get the code
+        uses: actions/checkout@v4
 
-        - name: current directory
-          run: pwd
+      - name: get the node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: install dependency
+        run: npm ci
+      
+      - name: run tests
+        run: npm run test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name : practice ci/cd
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#     hello:
+#       runs-on: ubuntu-latest
+
+#       steps:
+#         - name: checkout the repo
+#           uses: actions/checkout@v4
+        
+#         - name: say hello
+#           run: echo "hello from actions"
+        
+#         - name: get file structure
+#           run: ls -a
+
+#         - name: current directory
+#           run: pwd
