@@ -1,40 +1,56 @@
-name: ci/cd2
+name: env_tut
 
 on:
   push:
     branches: [main]
 
 jobs:
-  ci2:
+  Env_tut:
     runs-on: ubuntu-latest
 
     steps:
-      - name: get the code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: get the node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: install dependency
-        run: npm ci
+      - run: npm ci
+
+      - name: run app with env vars
+        run: node index.js
+        env:
+            APP_ENV: ci
+            PORT: 6000
+        
+
+
+
+
+# name: ci/cd
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   hello:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: get the code
+#         uses: actions/checkout@v4
+
+#       - name: get the node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
       
-      - name: run tests
-        run: npm run test
-
-
-
-
-
-
-
-
-
-
-
-
-
+#       - name: install depts
+#         run: npm ci
+      
+#       - name: test
+#         run: npm run test
 
 
 
