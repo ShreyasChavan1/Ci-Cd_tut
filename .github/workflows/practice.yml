@@ -1,31 +1,56 @@
-name: env_tut
+name: env_redis_ci
 
 on:
   push:
     branches: [main]
 
 jobs:
-  Env_tut:
+  redis_ci:
     runs-on: ubuntu-latest
 
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+    
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - run: npm ci
 
-      - name: run app with env vars
+      - name: test our redis
         run: node index.js
         env:
-            APP_ENV: ci
-            PORT: 6000
-        
+          host: localhost
+          port: 6379
 
 
 
+# name: env_tut
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   Env_tut:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+
+#       - run: npm ci
+
+#       - name: run app with env vars
+#         run: node index.js
+#         env:
+#             APP_ENV: ci
+#             PORT: 6000
 
 # name: ci/cd
 
