@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"All tests have passed"
+    "test": "echo \"Error: no test specified\""
   },
   "keywords": [],
   "author": "",
