@@ -28,12 +28,6 @@ jobs:
 
       - name: check our docker service
         run: docker build -t myapp .
-      - run: |
-           docker run \
-           -e HOST=redis \
-           -e PORT=6379 \
-           myapp 
-
 
 
 
