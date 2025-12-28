@@ -41,6 +41,7 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
           script: |
+             docker start redis
              docker pull ${{secrets.DOCKER_USER}}/mynewapp:latest
              docker stop mynewapp || true
              docker rm mynewapp || true
