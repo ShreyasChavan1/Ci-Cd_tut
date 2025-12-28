@@ -41,11 +41,10 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSH_KEY}}
           script: |
-             docker start redis
              docker pull ${{secrets.DOCKER_USER}}/mynewapp:latest
              docker stop mynewapp || true
              docker rm mynewapp || true
-             docker run -d --name mynewapp -p 6379:6379 -e HOST=localhost -e PORT=6379 ${{secrets.DOCKER_USER}}/mynewapp:latest
+             docker run -d --name mynewapp -p 4000:4000 -e HOST=host.docker.internal -e PORT=6379 ${{secrets.DOCKER_USER}}/mynewapp:latest
 
   
 
