@@ -31,7 +31,7 @@ jobs:
 
       - run: docker build -t ${{secrets.DOCKER_USER}}/mynewapp:latest .
         
-      - run: docker push -t ${{secrets.DOCKER_USER}}/mynewapp:latest
+      - run: docker push  ${{secrets.DOCKER_USER}}/mynewapp:latest
 
   deploy_work:
     needs: image_push
@@ -95,54 +95,7 @@ jobs:
 
 
 
-# name: docker_image
 
-# on:
-#   push:
-#     branches: [main]
-
-# jobs:
-#   image_push:
-#     runs-on: ubuntu-latest
-
-#     services:
-#       redis:
-#         image: redis:7
-#         ports: 
-#           - 6379:6379
-    
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: 20
-
-#       - run: npm ci
-#       - run: npm test
-#         env:
-#           HOST: localhost
-#           PORT: 6379
-      
-#       - name: login to docker
-#         run: echo "${{secrets.DOCKER_PASS}}" | docker login -u "${{secrets.DOCKER_USER}}" --password-stdin
-
-  
-#   docker_deploy:
-#     needs: image_push
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: run docker container on vm
-#         uses: appleboy/ssh-action@v1.0.3
-#         with:
-#           host: ${{secrets.SSH_HOST}}
-#           username: ${{secrets.SSH_USER}}
-#           key: ${{secrets.SSH_KEY}}
-#           script: |
-#             docker pull ${{secrets.DOCKER_USER}}/myapp:latest
-#             docker stop myapp || true
-#             docker rm myapp || true
-#             docker run -d --name myapp -p 4000:4000 -e HOST=localhost -e PORT=6379 ${{secrets.DOCKER_USER}}/myapp:latest
 
         
 
