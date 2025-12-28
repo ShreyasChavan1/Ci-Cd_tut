@@ -29,9 +29,6 @@ jobs:
       - name: push new image to docker hub
         run: echo ${{secrets.DOCKER_PASS}} | docker login -u ${{secrets.DOCKER_USER}} --password-stdin
 
-      - run: docker build -t ${{secrets.DOCKER_USER}}/mynewapp:latest .
-        
-      - run: docker push  ${{secrets.DOCKER_USER}}/mynewapp:latest
 
   deploy_work:
     needs: image_push
@@ -47,7 +44,7 @@ jobs:
              docker pull ${{secrets.DOCKER_USER}}/mynewapp:latest
              docker stop mynewapp || true
              docker rm mynewapp || true
-             docker run -d --name mynewapp -p 6379:6379 -e HOST=localhost -e PORT=6379 ${{secrets.DOCKER_USER}}/mynewpp:latest
+             docker run -d --name mynewapp -p 6379:6379 -e HOST=localhost -e PORT=6379 ${{secrets.DOCKER_USER}}/mynewapp:latest
 
   
 
